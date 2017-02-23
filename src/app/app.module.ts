@@ -8,10 +8,11 @@ import { MaterialModule } from '@angular/material';
 import { AngularFireModule } from 'angularfire2';
 
 import { AppComponent } from './app.component';
-import { AuthService } from './providers/auth-service';
+import { AuthService } from './providers';
 import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './app.routing';
 import { HomeComponent } from './home/home.component';
+import { AppStoreModule } from './store/index';
 
 // Must export the config
 export const firebaseConfig = {
@@ -34,7 +35,8 @@ export const firebaseConfig = {
     HttpModule,
     MaterialModule,
     AngularFireModule.initializeApp(firebaseConfig),
-    AppRoutingModule
+    AppRoutingModule,
+    AppStoreModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

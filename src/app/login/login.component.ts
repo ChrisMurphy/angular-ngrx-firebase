@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 
+import { Store } from '@ngrx/store';
+
 import { AuthService } from '../providers/auth-service';
+import { AuthActions } from '../store/actions';
+import * as RootStore from '../store';
 
 @Component({
   selector: 'app-login',
@@ -10,16 +14,23 @@ import { AuthService } from '../providers/auth-service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(public authService: AuthService, private router: Router) { }
+  constructor(
+    private router: Router,
+    private store: Store<RootStore.AppState>,
+    private authActions: AuthActions,
+  ) { }
 
   ngOnInit() {
+    this.store.select(store => store.authState).subscribe(state => {
+      // Do selector stuff instead?
+      if (state.authInfo) {
+        this.router.navigate(['home']);
+      }
+    });
   }
 
   login() {
-    this.authService.loginWithGoogle().then((data) => {
-      // Send them to the homepage if they are logged in
-      this.router.navigate(['home']);
-    })
+    this.store.dispatch(this.authActions.login());
   }
 
 }
