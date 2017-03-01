@@ -6,11 +6,13 @@ import { AuthActions } from './../actions';
 export interface AuthState {
     authenticating: boolean;
     authInfo: FirebaseAuthState;
+    error: any;
 }
 
 const initialState: AuthState = {
     authenticating: false,
-    authInfo: null
+    authInfo: null,
+    error: null
 };
 
 export default function (state = initialState, action: Action): AuthState {
@@ -20,10 +22,16 @@ export default function (state = initialState, action: Action): AuthState {
         case AuthActions.LOGIN:
             return Object.assign({}, state, { authenticating: true });
 
+        case AuthActions.LOGOUT:
+            return Object.assign({}, state, { authenticating: true });
+
         case AuthActions.AUTH_SUCCESS:
             return Object.assign({}, state, { authenticating: false, authInfo: action.payload });
 
-        case AuthActions.LOGOUT:
+        case AuthActions.AUTH_FAILURE:
+            return Object.assign({}, state, { authenticating: false, error: action.payload });
+
+        case AuthActions.AUTH_REVOKED:
             return initialState;
 
         default:

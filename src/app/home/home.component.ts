@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 
 import { Store } from '@ngrx/store';
 
-import { AuthService } from '../providers/auth-service';
+import { AuthService } from '../providers/auth.service';
 import { AuthActions } from '../store/actions';
 import * as RootStore from '../store';
 

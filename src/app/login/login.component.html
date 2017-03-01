@@ -1,2 +1,8 @@
-<h1>Login to Your Account</h1><br>
-<button md-button (click)="login()">Login With Google</button>
+<h1>Login to Your Account</h1>
+
+<div>Loading: {{authState.authenticating}}</div>
+
+<button md-button (click)="login()">Login With Credentials</button>
+<!--<button md-button (click)="login()">Login With Google</button>-->
+
+{{authState?.error?.message}}

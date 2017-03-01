@@ -6,7 +6,7 @@ import { storeLogger } from 'ngrx-store-logger';
 
 import { AuthActions } from './actions';
 import { AuthEffects } from './effects';
-import * as fromAuth from './reducers/auth';
+import * as fromAuth from './reducers/auth.reducers';
 
 export interface AppState {
   authState: fromAuth.AuthState;
