@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { AngularFire, AuthProviders, AuthMethods, FirebaseAuthState, AngularFireAuth } from 'angularfire2';
 // import * as firebase from 'firebase';
 
-import { IAuthCredentials } from '../models';
-
 @Injectable()
 export class AuthService {
 
@@ -21,7 +19,7 @@ export class AuthService {
    * Logs in the user using Email/Password
    * @returns {firebase.Promise<FirebaseAuthState>}
    */
-  public login(credentials: IAuthCredentials): firebase.Promise<FirebaseAuthState> {
+  public login(credentials: any): firebase.Promise<FirebaseAuthState> {
     return this.angularFire.auth.login(credentials);
   }
 
