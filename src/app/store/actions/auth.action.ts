@@ -26,7 +26,7 @@ export class AuthActions {
 
     authCheck(): Action {
         return { type: AuthActions.AUTH_CHECK };
-    }    
+    }
 
     authSuccess(authInfo: FirebaseAuthState) {
         return { type: AuthActions.AUTH_SUCCESS, payload: authInfo };

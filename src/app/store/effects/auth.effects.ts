@@ -31,7 +31,7 @@ export class AuthEffects {
             this.authService.logout().then(
                 () => this.authActions.authRevoked()
             )
-        );        
+        );
 
     constructor(
         private actions$: Actions,
