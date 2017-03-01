@@ -1,7 +1,7 @@
 import { Action } from '@ngrx/store';
 import { FirebaseAuthState } from 'angularfire2';
 
-import { AuthActions } from './../actions';
+import { AuthActions } from '../actions';
 
 export interface AuthState {
     authenticating: boolean;
@@ -15,7 +15,7 @@ const initialState: AuthState = {
     error: null
 };
 
-export default function (state = initialState, action: Action): AuthState {
+export function authReducer(state = initialState, action: Action): AuthState {
 
     switch (action.type) {
 

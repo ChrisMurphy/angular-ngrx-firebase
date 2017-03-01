@@ -6,10 +6,10 @@ import { storeLogger } from 'ngrx-store-logger';
 
 import { AuthActions } from './actions';
 import { AuthEffects } from './effects';
-import * as fromAuth from './reducers/auth.reducers';
+import { authReducer, AuthState } from './reducers/auth.reducers';
 
 export interface AppState {
-  authState: fromAuth.AuthState;
+  authState: AuthState;
 };
 
 export const actions = [
@@ -18,7 +18,7 @@ export const actions = [
 
 export const composeStore = compose(storeLogger(), combineReducers)
   ({
-    authState: fromAuth.default
+    authState: authReducer
   });
 
 export function reducer(state: any, action: any) {
