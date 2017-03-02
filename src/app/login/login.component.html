@@ -1,20 +1,21 @@
 <h1>Login to Your Account</h1>
 
-<div>Loading: {{authState.authenticating}}</div>
+<app-loading [loading]="authState.authenticating"></app-loading>
 
-<button md-button (click)="login()">Login With Credentials</button>
-<!--<button md-button (click)="login()">Login With Google</button>-->
+<button md-button (click)="login()" [disabled]="authState.authenticating">SIGN IN</button>
+
 <button md-fab (click)="loginGoogle()">
     <md-icon class="mdi-24px" fontSet="mdi" fontIcon="mdi-google"></md-icon>
 </button>
+
 <button md-fab (click)="loginFacebook()">
     <md-icon class="mdi-24px" fontSet="mdi" fontIcon="mdi-facebook"></md-icon>
 </button>
+
 <button md-fab (click)="loginTwitter()">
     <md-icon class="mdi-24px" fontSet="mdi" fontIcon="mdi-twitter"></md-icon>
 </button>
+
 <button md-fab (click)="loginGithub()">
     <md-icon class="mdi-24px" fontSet="mdi" fontIcon="mdi-github-circle"></md-icon>
-</button> 
-
-{{authState?.error?.message}}
+</button> {{authState?.error?.message}}

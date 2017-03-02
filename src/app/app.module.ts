@@ -14,6 +14,7 @@ import { AppRoutingModule } from './app.routing';
 import { HomeComponent } from './home/home.component';
 import { AppStoreModule } from './store/index';
 import { AuthGuard } from './guards';
+import { LoadingComponent } from './loading/loading.component';
 
 // Must export the config
 export const firebaseConfig = {
@@ -33,7 +34,8 @@ export const firebaseAuthConfig = {
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,

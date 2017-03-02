@@ -22,6 +22,9 @@ export function authReducer(state = initialState, action: Action): AuthState {
         case AuthActions.LOGIN:
             return Object.assign({}, state, { authenticating: true });
 
+        case AuthActions.LOGIN_SOCIAL:
+            return Object.assign({}, state, { authenticating: true });
+
         case AuthActions.LOGOUT:
             return Object.assign({}, state, { authenticating: true });
 
