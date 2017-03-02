@@ -2,9 +2,11 @@ import { Injectable } from '@angular/core';
 
 import 'rxjs/add/operator/take';
 import { Actions, Effect, toPayload } from '@ngrx/effects';
+import { AuthProviders } from 'angularfire2';
 
 import { AuthService } from '../../providers';
 import { AuthActions } from '../actions';
+import { EmailPasswordCredentials } from '../../models';
 
 @Injectable()
 export class AuthEffects {
@@ -18,9 +20,18 @@ export class AuthEffects {
 
     @Effect() login$ = this.actions$
         .ofType(AuthActions.LOGIN)
-        // .map(toPayload)
-        .switchMap(() =>
-            this.authService.login({ email: 'monkeeman69@googlemail.com', password: 'd1versify' }).then(
+        .map(toPayload)
+        .switchMap((credentials: EmailPasswordCredentials) =>
+            this.authService.login(credentials).then(
+                authInfo => this.authActions.authSuccess(authInfo),
+                error => this.authActions.authFailure(error))
+        );
+
+    @Effect() loginSocial$ = this.actions$
+        .ofType(AuthActions.LOGIN_SOCIAL)
+        .map(toPayload)
+        .switchMap((provider: AuthProviders) =>
+            this.authService.loginSocial(provider).then(
                 authInfo => this.authActions.authSuccess(authInfo),
                 error => this.authActions.authFailure(error))
         );

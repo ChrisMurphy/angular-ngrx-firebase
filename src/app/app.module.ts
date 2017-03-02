@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import 'hammerjs';
-import { MaterialModule } from '@angular/material';
+import { MaterialModule , MdIconRegistry } from '@angular/material';
 import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
 
 import { AppComponent } from './app.component';
@@ -47,4 +47,8 @@ export const firebaseAuthConfig = {
   providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(private mdIconRegistry: MdIconRegistry) {
+    mdIconRegistry.registerFontClassAlias('materialdesignicons', 'mdi');
+  }
+}

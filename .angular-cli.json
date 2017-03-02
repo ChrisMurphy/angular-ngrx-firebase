@@ -19,6 +19,7 @@
       "tsconfig": "tsconfig.json",
       "prefix": "app",
       "styles": [
+        "../node_modules/mdi/css/materialdesignicons.css",
         "styles.scss",
         "./assets/custom-theme.scss"
       ],

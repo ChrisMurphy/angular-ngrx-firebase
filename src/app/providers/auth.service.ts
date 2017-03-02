@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFire, AuthProviders, AuthMethods, FirebaseAuthState, AngularFireAuth,  } from 'angularfire2';
+import { AngularFire, AuthProviders, AuthMethods, FirebaseAuthState, AngularFireAuth, } from 'angularfire2';
 // import * as firebase from 'firebase';
 
 import { EmailPasswordCredentials } from '../models';
@@ -7,7 +7,7 @@ import { EmailPasswordCredentials } from '../models';
 @Injectable()
 export class AuthService {
 
-  constructor(public angularFire: AngularFire) {}
+  constructor(public angularFire: AngularFire) { }
 
   /**
    * Gets the angularfire auth object
@@ -26,12 +26,12 @@ export class AuthService {
   }
 
   /**
-   * Logs in the userusing Google
+   * Logs in the user using social provider
    * @returns {firebase.Promise<FirebaseAuthState>}
    */
-  public loginWithGoogle(): firebase.Promise<FirebaseAuthState> {
+  public loginSocial(provider: AuthProviders): firebase.Promise<FirebaseAuthState> {
     return this.angularFire.auth.login({
-      provider: AuthProviders.Google,
+      provider: provider,
       method: AuthMethods.Popup,
     });
   }

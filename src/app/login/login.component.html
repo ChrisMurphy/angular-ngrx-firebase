@@ -4,5 +4,17 @@
 
 <button md-button (click)="login()">Login With Credentials</button>
 <!--<button md-button (click)="login()">Login With Google</button>-->
+<button md-fab (click)="loginGoogle()">
+    <md-icon class="mdi-24px" fontSet="mdi" fontIcon="mdi-google"></md-icon>
+</button>
+<button md-fab (click)="loginFacebook()">
+    <md-icon class="mdi-24px" fontSet="mdi" fontIcon="mdi-facebook"></md-icon>
+</button>
+<button md-fab (click)="loginTwitter()">
+    <md-icon class="mdi-24px" fontSet="mdi" fontIcon="mdi-twitter"></md-icon>
+</button>
+<button md-fab (click)="loginGithub()">
+    <md-icon class="mdi-24px" fontSet="mdi" fontIcon="mdi-github-circle"></md-icon>
+</button> 
 
 {{authState?.error?.message}}

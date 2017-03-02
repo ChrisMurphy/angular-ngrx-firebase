@@ -2,10 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { Store } from '@ngrx/store';
+import { AuthProviders } from 'angularfire2';
 
 import { AuthActions } from '../store/actions';
 import { AuthState } from '../store/reducers';
 import * as RootStore from '../store';
+import { EmailPasswordCredentials } from '../models';
 
 @Component({
   selector: 'app-login',
@@ -37,7 +39,24 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.store.dispatch(this.authActions.login());
+    let credentials: EmailPasswordCredentials = { email: 'monkeeman69@googlemail.com', password: 'password123' }
+    this.store.dispatch(this.authActions.login(credentials));
+  }
+
+  loginGoogle() {
+    this.store.dispatch(this.authActions.loginSocial(AuthProviders.Google));
+  }
+
+  loginFacebook() {
+    this.store.dispatch(this.authActions.loginSocial(AuthProviders.Facebook));
+  }
+
+  loginTwitter() {
+    this.store.dispatch(this.authActions.loginSocial(AuthProviders.Twitter));
+  }
+
+  loginGithub() {
+    this.store.dispatch(this.authActions.loginSocial(AuthProviders.Github));
   }
 
 }
