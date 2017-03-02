@@ -2,10 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs/Observable';
 
 import { AuthService } from '../providers/auth.service';
 import { AuthActions } from '../store/actions';
 import * as RootStore from '../store';
+import { getUserEmail } from '../store/selectors';
 
 @Component({
   selector: 'app-home',
@@ -13,6 +15,7 @@ import * as RootStore from '../store';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  public userEmail$: Observable<string>;
 
   constructor(
     private router: Router,
@@ -21,6 +24,7 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.userEmail$ = this.store.select(getUserEmail);
   }
 
   logout() {

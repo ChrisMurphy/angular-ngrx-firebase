@@ -1,5 +1,22 @@
-<p>
-  home works! CI works!
-</p>
+<md-toolbar>
+  <span>Home</span>
+  <span class="spacer"></span>
+  <span>{{userEmail$ | async}}</span>
+  <button md-icon-button [mdMenuTriggerFor]="menu" class="icon-button">
+    <md-icon>more_vert</md-icon>
+  </button>
+  <md-menu #menu="mdMenu">
+    <button md-menu-item>
+      <md-icon>fingerprint</md-icon>
+      <span>Profile</span>
+    </button>
+    <button md-menu-item (click)="logout()">
+      <md-icon>exit_to_app</md-icon>
+      <span>Sign out</span>
+    </button>
+  </md-menu>
+</md-toolbar>
 
-<button (click)="logout()">Logout</button>
+<p>
+  home works!
+</p>
