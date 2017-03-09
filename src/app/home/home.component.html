@@ -1,9 +1,9 @@
 <md-toolbar>
   <span>Home</span>
   <span class="spacer"></span>
-  <span>{{userEmail$ | async}}</span>
+  <span class="user">{{userEmail$ | async}}</span>
   <button md-icon-button [mdMenuTriggerFor]="menu" class="icon-button">
-    <md-icon>more_vert</md-icon>
+    <md-icon>account_circle</md-icon>
   </button>
   <md-menu #menu="mdMenu">
     <button md-menu-item>

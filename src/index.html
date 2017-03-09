@@ -1,5 +1,6 @@
 <!doctype html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <title>AngularNgrxFirebase</title>
@@ -10,8 +11,50 @@
 
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+  <style>
+    .loader {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: perspective(100px) rotateY(0);
+      }
+      100% {
+        transform: perspective(100px) rotateY(180deg);
+      }
+    }
+
+    .spin {
+        width: 100px;
+        height: 100px;
+        animation: spin 1s 0s cubic-bezier(.09,.57,.49,.9) infinite;
+    }
+  </style>
 </head>
+
 <body>
-  <app-root>Loading...</app-root>
+  <app-root>
+    <div class="loader">
+      <svg class="spin" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" 
+        viewBox="0 0 250 250" style="enable-background:new 0 0 250 250;" xml:space="preserve">
+        <style type="text/css">
+          .st0{fill:#DD0031;}
+          .st1{fill:#C3002F;}
+          .st2{fill:#FFFFFF;}
+        </style>
+        <g>
+          <polygon class="st0" points="125,30 125,30 125,30 31.9,63.2 46.1,186.3 125,230 125,230 125,230 203.9,186.3 218.1,63.2 	"/>
+          <polygon class="st1" points="125,30 125,52.2 125,52.1 125,153.4 125,153.4 125,230 125,230 203.9,186.3 218.1,63.2 125,30 	"/>
+          <path class="st2" d="M125,52.1L66.8,182.6h0h21.7h0l11.7-29.2h49.4l11.7,29.2h0h21.7h0L125,52.1L125,52.1L125,52.1L125,52.1
+            L125,52.1z M142,135.4H108l17-40.9L142,135.4z"/>
+        </g>
+      </svg>
+    </div>
+  </app-root>
 </body>
+
 </html>
