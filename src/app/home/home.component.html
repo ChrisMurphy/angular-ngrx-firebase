@@ -1,13 +1,15 @@
 <md-toolbar color="primary">
   <span>Home</span>
   <span class="spacer"></span>
-  <span class="user">{{userEmail$ | async}}</span>
+  <span class="user" fxShow="false" fxShow.gt-xs>
+    {{userEmail$ | async}}
+  </span>
   <button md-icon-button [mdMenuTriggerFor]="menu" class="icon-button">
-    <md-icon>account_circle</md-icon>
+    <md-icon>more_vert</md-icon>
   </button>
   <md-menu #menu="mdMenu">
     <button md-menu-item>
-      <md-icon>fingerprint</md-icon>
+      <md-icon>account_circle</md-icon>
       <span>Profile</span>
     </button>
     <button md-menu-item (click)="logout()">
