@@ -1,0 +1,26 @@
+.login-container {
+	background: #e3e1ca;
+}
+
+md-card-header {
+	height: 140px;
+	background: lightblue;
+	> img {
+		width: 130px;
+	}
+}    
+
+.supporting-text {
+	height: 50px;
+}
+
+md-card-content {
+	font-size: 16px;
+	> form {
+		margin-top: 1em;
+	}
+}
+
+md-card-actions {
+	padding: 1em;
+}                                                                               

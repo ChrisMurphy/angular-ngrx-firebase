@@ -17,6 +17,7 @@ import { EmailPasswordCredentials } from '../models';
 export class LoginComponent implements OnInit {
   public returnUrl: string;
   public authState: AuthState;
+  public model: any = {};
 
   constructor(
     private route: ActivatedRoute,

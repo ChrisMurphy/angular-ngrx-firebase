@@ -1,21 +1,48 @@
-<h1>Login to Your Account</h1>
-
-<app-loading [loading]="authState.authenticating"></app-loading>
-
-<button md-button (click)="login()" [disabled]="authState.authenticating">SIGN IN</button>
-
-<button md-fab (click)="loginGoogle()">
-    <md-icon class="mdi-24px" fontSet="mdi" fontIcon="mdi-google"></md-icon>
-</button>
-
-<button md-fab (click)="loginFacebook()">
-    <md-icon class="mdi-24px" fontSet="mdi" fontIcon="mdi-facebook"></md-icon>
-</button>
-
-<button md-fab (click)="loginTwitter()">
-    <md-icon class="mdi-24px" fontSet="mdi" fontIcon="mdi-twitter"></md-icon>
-</button>
-
-<button md-fab (click)="loginGithub()">
-    <md-icon class="mdi-24px" fontSet="mdi" fontIcon="mdi-github-circle"></md-icon>
-</button> {{authState?.error?.message}}
+<div fxLayout="row" fxLayoutAlign="space-around center" class="full-height login-container">
+    <md-card fxFlex="400px">
+        <md-card-header fxLayoutAlign="center">
+            <img src="../../assets/monkey.svg" />
+        </md-card-header>
+        <md-card-content>
+            <div fxLayout="row" fxLayoutAlign="center center" class="supporting-text">connect via one of these providers</div>
+            <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="0.5em">
+                <button md-fab (click)="loginGoogle()" [disabled]="authState.authenticating">
+                    <md-icon class="mdi-24px" fontSet="mdi" fontIcon="mdi-google"></md-icon>
+                </button>
+                <button md-fab (click)="loginFacebook()" [disabled]="authState.authenticating">
+                    <md-icon class="mdi-24px" fontSet="mdi" fontIcon="mdi-facebook"></md-icon>
+                </button>
+                <button md-fab (click)="loginTwitter()" [disabled]="authState.authenticating">
+                    <md-icon class="mdi-24px" fontSet="mdi" fontIcon="mdi-twitter"></md-icon>
+                </button>
+                <button md-fab (click)="loginGithub()" [disabled]="authState.authenticating">
+                    <md-icon class="mdi-24px" fontSet="mdi" fontIcon="mdi-github-circle"></md-icon>
+                </button>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="center end" class="supporting-text">or enter your account info</div>
+            <form novalidate fxLayout="column" fxLayoutAlign="space-around" fxLayoutGap="16px">
+                <md-input-container fxLayout="row">
+                    <input mdInput placeholder="Email">
+                </md-input-container>
+                <md-input-container fxLayout="row">
+                    <input mdInput placeholder="Password" type="password">
+                </md-input-container>
+            </form>
+            <div fxLayout="row" fxLayoutAlign="center center">
+                <a routerLink="/forgot-password">Forgot Password?</a>   
+            </div>               
+            <div>
+                {{authState?.error?.message}}
+            </div>
+        </md-card-content>
+        <md-card-actions fxLayout="column">
+            <button md-raised-button [disabled]="authState.authenticating" color="primary" (click)="login()" class="login-button">SIGN IN</button>
+            <div fxLayout="row" fxLayoutAlign="center center" class="supporting-text">
+                Need an account?&nbsp;<a routerLink="/home">Create one here</a>
+            </div>            
+        </md-card-actions>
+        <md-card-footer>
+            <md-progress-bar mode="indeterminate" *ngIf="authState.authenticating"></md-progress-bar>
+        </md-card-footer>
+    </md-card>
+</div>

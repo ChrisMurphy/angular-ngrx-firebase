@@ -7,6 +7,8 @@ import 'hammerjs';
 import { MaterialModule , MdIconRegistry } from '@angular/material';
 import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
 
+import { FlexLayoutModule } from '@angular/flex-layout';
+
 import { AppComponent } from './app.component';
 import { AuthService } from './providers';
 import { LoginComponent } from './login/login.component';
@@ -44,7 +46,8 @@ export const firebaseAuthConfig = {
     MaterialModule,
     AngularFireModule.initializeApp(firebaseConfig, firebaseAuthConfig),
     AppRoutingModule,
-    AppStoreModule
+    AppStoreModule,
+    FlexLayoutModule
   ],
   providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]
