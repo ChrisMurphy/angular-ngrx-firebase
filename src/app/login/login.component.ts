@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+import { EmailValidators } from 'ng2-validators'
+
 import { Store } from '@ngrx/store';
 import { AuthProviders } from 'angularfire2';
 
@@ -44,8 +46,8 @@ export class LoginComponent implements OnInit {
     });
 
     this.form = this.formBuilder.group({
-      email: ['', Validators.required],
-      password: ['', Validators.required]
+      email: [null, Validators.compose([Validators.required, EmailValidators.simple])],
+      password: [null, Validators.required]
     });
   }
 

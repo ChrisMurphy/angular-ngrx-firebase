@@ -1,10 +1,10 @@
-<div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutAlign.xs="start start" class="full-height login-container">
+<div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutAlign.xs="start start" class="full-height container">
     <md-card fxFlex="400px" fxFlex.xs="100%">
         <md-card-header fxLayoutAlign="center">
             <img src="../../assets/monkey.svg" />
         </md-card-header>
         <md-card-content>
-            <div fxLayout="row" fxLayoutAlign="center center" class="supporting-text">connect via one of these providers</div>
+            <div fxLayout="row" fxLayoutAlign="center center" class="social-text">connect via one of these providers</div>
             <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="0.5em">
                 <button md-fab (click)="loginGoogle()" [disabled]="authState.authenticating">
                     <md-icon class="mdi-24px" fontSet="mdi" fontIcon="mdi-google"></md-icon>
@@ -19,27 +19,31 @@
                     <md-icon class="mdi-24px" fontSet="mdi" fontIcon="mdi-github-circle"></md-icon>
                 </button>
             </div>
-            <div fxLayout="row" fxLayoutAlign="center end" class="supporting-text">or enter your account info</div>
+            <div fxLayout="row" fxLayoutAlign="center end" class="account-text">or enter your account info</div>
             <form novalidate [formGroup]="form" fxLayout="column" fxLayoutAlign="space-around" fxLayoutGap="16px">
                 <md-input-container>
-                    <input mdInput placeholder="Email" formControlName="email" width="100%">
+                    <input mdInput placeholder="Email" formControlName="email" autocomplete="off">
+                    <md-hint class="error">
+                        <span *ngIf="form.controls.email.hasError('required') && form.controls.email.touched">email address is required</span>
+                        <span *ngIf="form.controls.email.hasError('simpleEmailRule') && form.controls.email.touched">email address appears incorrect</span>
+                    </md-hint>
                 </md-input-container>
                 <md-input-container>
                     <input mdInput placeholder="Password" type="password" formControlName="password">
+                    <md-hint class="error">
+                        <span *ngIf="form.controls.password.hasError('required') && form.controls.password.touched">password is required</span>
+                    </md-hint>
                 </md-input-container>
             </form>
-            <div fxLayout="row" fxLayoutAlign="center center">
-                <a routerLink="/forgot-password">Forgot Password?</a>   
-            </div>               
-            <div>
-                {{authState?.error?.message}}
+            <div fxLayoutAlign="center end" *ngIf="authState.error" class="error-state">
+                {{authState.error.message}}
             </div>
         </md-card-content>
         <md-card-actions fxLayout="column">
-            <button md-raised-button [disabled]="authState.authenticating" color="primary" (click)="login()" class="login-button">SIGN IN</button>
-            <div fxLayout="row" fxLayoutAlign="center center" class="supporting-text">
-                Need an account?&nbsp;<a routerLink="/home">Create one here</a>
-            </div>            
+            <button md-raised-button [disabled]="authState.authenticating || form.invalid" color="primary" (click)="login()" class="login-button">SIGN IN</button>
+            <div fxLayout="row" fxLayoutAlign="center end" class="supporting-actions">
+                <a routerLink="/home">Need to sign up?</a>&nbsp;/&nbsp;<a routerLink="/forgot-password">Forgot your Password?</a>
+            </div>
         </md-card-actions>
         <md-card-footer>
             <md-progress-bar mode="indeterminate" *ngIf="authState.authenticating"></md-progress-bar>
