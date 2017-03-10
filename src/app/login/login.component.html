@@ -40,9 +40,9 @@
             </div>
         </md-card-content>
         <md-card-actions fxLayout="column">
-            <button md-raised-button [disabled]="authState.authenticating || form.invalid" color="primary" (click)="login()" class="login-button">SIGN IN</button>
+            <button md-raised-button [disabled]="authState.authenticating" color="primary" (click)="login()">SIGN IN</button>
             <div fxLayout="row" fxLayoutAlign="center end" class="supporting-actions">
-                <a routerLink="/home">Need to sign up?</a>&nbsp;/&nbsp;<a routerLink="/forgot-password">Forgot your Password?</a>
+                <a routerLink="/register">Need to sign up?</a>
             </div>
         </md-card-actions>
         <md-card-footer>

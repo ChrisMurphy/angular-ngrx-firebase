@@ -1,0 +1,39 @@
+@import '~@angular/material/core/theming/all-theme';
+@include mat-core();
+
+.container {
+	background: #e3e1ca;
+}
+
+.error, .error-state {
+	color: mat-color($mat-red, 500, 1);
+}
+
+md-card-header {
+	height: 140px;
+	background: lightblue;
+	> img {
+		width: 130px;
+	}
+}
+
+md-card-content {
+	font-size: 16px;
+	.social-text {
+		height: 50px;
+	}
+	.account-text {
+		height: 40px;
+		margin-bottom: 10px;
+	}
+	.error-state {
+		height: 60px;
+	}
+}
+
+md-card-actions {
+	padding: 1em;
+	.supporting-actions {
+		height: 50px;
+	}			
+}

@@ -17,6 +17,7 @@ import { HomeComponent } from './home/home.component';
 import { AppStoreModule } from './store/index';
 import { AuthGuard } from './guards';
 import { LoadingComponent } from './loading/loading.component';
+import { RegisterComponent } from './register/register.component';
 
 // Must export the config
 export const firebaseConfig = {
@@ -37,7 +38,8 @@ export const firebaseAuthConfig = {
     AppComponent,
     LoginComponent,
     HomeComponent,
-    LoadingComponent
+    LoadingComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
