@@ -21,10 +21,10 @@
             </div>
             <div fxLayout="row" fxLayoutAlign="center end" class="supporting-text">or enter your account info</div>
             <form novalidate [formGroup]="form" fxLayout="column" fxLayoutAlign="space-around" fxLayoutGap="16px">
-                <md-input-container fxLayout="row">
-                    <input mdInput placeholder="Email" formControlName="email">
+                <md-input-container>
+                    <input mdInput placeholder="Email" formControlName="email" width="100%">
                 </md-input-container>
-                <md-input-container fxLayout="row">
+                <md-input-container>
                     <input mdInput placeholder="Password" type="password" formControlName="password">
                 </md-input-container>
             </form>
