@@ -11,13 +11,13 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AppComponent } from './app.component';
 import { AuthService } from './providers';
-import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './app.routing';
 import { HomeComponent } from './home/home.component';
 import { AppStoreModule } from './store/index';
 import { AuthGuard } from './guards';
 import { LoadingComponent } from './loading/loading.component';
-import { RegisterComponent } from './register/register.component';
+import { AuthModule } from './auth/auth.module';
+
 
 // Must export the config
 export const firebaseConfig = {
@@ -36,10 +36,8 @@ export const firebaseAuthConfig = {
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
     HomeComponent,
-    LoadingComponent,
-    RegisterComponent
+    LoadingComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +48,8 @@ export const firebaseAuthConfig = {
     AngularFireModule.initializeApp(firebaseConfig, firebaseAuthConfig),
     AppRoutingModule,
     AppStoreModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    AuthModule
   ],
   providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]

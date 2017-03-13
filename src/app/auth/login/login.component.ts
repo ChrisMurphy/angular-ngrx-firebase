@@ -7,11 +7,11 @@ import { EmailValidators } from 'ng2-validators'
 import { Store } from '@ngrx/store';
 import { AuthProviders } from 'angularfire2';
 
-import { AuthActions } from '../store/actions';
-import { AuthState } from '../store/reducers';
-import { getAuth, isLoggedIn } from '../store/selectors';
-import * as RootStore from '../store';
-import { EmailPasswordCredentials } from '../models';
+import { AuthActions } from '../../store/actions';
+import { AuthState } from '../../store/reducers';
+import { getAuth, isLoggedIn } from '../../store/selectors';
+import * as RootStore from '../../store';
+import { EmailPasswordCredentials } from '../../models';
 
 @Component({
   selector: 'app-login',
@@ -21,18 +21,19 @@ import { EmailPasswordCredentials } from '../models';
 export class LoginComponent implements OnInit {
   public returnUrl: string;
   public authState: AuthState;
-  public model: any = {};
   public form: FormGroup;
+  public submitted: boolean;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private store: Store<RootStore.AppState>,
     private authActions: AuthActions,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
   ) { }
 
   ngOnInit() {
+    this.submitted = false;
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || 'home';
 
     this.store.select(getAuth).subscribe(state => {
@@ -51,9 +52,10 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  login() {
-    if (this.form.valid) {
-      let credentials: EmailPasswordCredentials = this.form.value;
+  login(credentials: EmailPasswordCredentials, isValid: boolean) {
+    this.submitted = true; 
+
+    if (isValid) {
       this.store.dispatch(this.authActions.login(credentials));
     }
   }
