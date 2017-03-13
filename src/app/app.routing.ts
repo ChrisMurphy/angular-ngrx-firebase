@@ -5,8 +5,8 @@ import { AuthGuard } from './guards';
 import { authRoutes } from './auth/auth.routing';
 
 const appRoutes: Routes = [
-    { path: '', redirectTo: '/login', pathMatch: 'full' },
-    { path: '', children: [...authRoutes] },
+    { path: '', redirectTo: '/users', pathMatch: 'full' },
+    { path: 'users', children: [...authRoutes] },
     { path: 'home', component: HomeComponent, canActivate: [AuthGuard] }
 ];
 

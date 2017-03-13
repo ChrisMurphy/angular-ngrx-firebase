@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit {
 
   logout() {
     this.store.dispatch(this.authActions.logout());
-    this.router.navigate(['login']);
+    this.router.navigate(['users']);
   }
 
 }
