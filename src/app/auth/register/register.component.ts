@@ -25,7 +25,7 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router,    
+    private router: Router,
     private store: Store<RootStore.AppState>,
     private authActions: AuthActions
   ) { }
@@ -47,5 +47,9 @@ export class RegisterComponent implements OnInit {
 
   register(credentials: EmailPasswordCredentials) {
     this.store.dispatch(this.authActions.register(credentials));
+  }
+
+  reset() {
+    this.store.dispatch(this.authActions.authReset());
   }
 }

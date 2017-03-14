@@ -37,6 +37,9 @@ export function authReducer(state = initialState, action: Action): AuthState {
         case AuthActions.AUTH_REVOKED:
             return initialState;
 
+        case AuthActions.AUTH_RESET:
+            return initialState;
+
         default:
             return Object.assign({}, state);
     }

@@ -13,7 +13,7 @@
         <md-card-actions fxLayout="column">
             <button md-raised-button (click)="form.ngSubmit.emit()" color="primary">SIGN UP</button>
             <div fxLayout="row" fxLayoutAlign="center end" class="supporting-actions">
-                <a routerLink="../">Already have an account?</a>
+                <a routerLink="../" (click)="reset()">Already have an account?</a>
             </div>
         </md-card-actions>
         <md-card-footer>

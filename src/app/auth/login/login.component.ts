@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.form = this.formComponent.form;    
+    this.form = this.formComponent.form;
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || 'home';
 
     this.store.select(getAuth).subscribe(state => {
@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
   }
 
   login(credentials: EmailPasswordCredentials) {
-      this.store.dispatch(this.authActions.login(credentials));
+    this.store.dispatch(this.authActions.login(credentials));
   }
 
   loginGoogle() {
@@ -65,4 +65,7 @@ export class LoginComponent implements OnInit {
     this.store.dispatch(this.authActions.loginSocial(AuthProviders.Github));
   }
 
+  reset() {
+    this.store.dispatch(this.authActions.authReset());
+  }
 }
