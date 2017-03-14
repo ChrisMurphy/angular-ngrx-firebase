@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { AngularFire, AuthProviders, AuthMethods, FirebaseAuthState, AngularFireAuth, } from 'angularfire2';
-// import * as firebase from 'firebase';
 
 import { EmailPasswordCredentials } from '../models';
 
@@ -49,6 +48,14 @@ export class AuthService {
    */
   public register(credentials: EmailPasswordCredentials): firebase.Promise<FirebaseAuthState> {
     return this.angularFire.auth.createUser(credentials);
+  }
+
+  /**
+   * Sends user a password reset email
+   * @returns {firebase.Promise<any>}
+   */
+  public reset(email: string): firebase.Promise<any> {
+    return firebase.auth().sendPasswordResetEmail(email);
   }  
 
 }
