@@ -1,8 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
-import { EmailValidators } from 'ng2-validators'
+import { NgForm } from '@angular/forms';
 
 import { Store } from '@ngrx/store';
 import { AuthProviders } from 'angularfire2';
@@ -12,6 +10,7 @@ import { AuthState } from '../../store/reducers';
 import { getAuth, isLoggedIn } from '../../store/selectors';
 import * as RootStore from '../../store';
 import { EmailPasswordCredentials } from '../../models';
+import { FormComponent } from '../form/form.component';
 
 @Component({
   selector: 'app-login',
@@ -19,21 +18,20 @@ import { EmailPasswordCredentials } from '../../models';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  @ViewChild(FormComponent) public formComponent: FormComponent;
+  public form: NgForm;
   public returnUrl: string;
   public authState: AuthState;
-  public form: FormGroup;
-  public submitted: boolean;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private store: Store<RootStore.AppState>,
-    private authActions: AuthActions,
-    private formBuilder: FormBuilder,
+    private authActions: AuthActions
   ) { }
 
   ngOnInit() {
-    this.submitted = false;
+    this.form = this.formComponent.form;    
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || 'home';
 
     this.store.select(getAuth).subscribe(state => {
@@ -45,19 +43,10 @@ export class LoginComponent implements OnInit {
         this.router.navigate([this.returnUrl]);
       }
     });
-
-    this.form = this.formBuilder.group({
-      email: [null, Validators.compose([Validators.required, EmailValidators.simple])],
-      password: [null, Validators.required]
-    });
   }
 
-  login(credentials: EmailPasswordCredentials, isValid: boolean) {
-    this.submitted = true; 
-
-    if (isValid) {
+  login(credentials: EmailPasswordCredentials) {
       this.store.dispatch(this.authActions.login(credentials));
-    }
   }
 
   loginGoogle() {

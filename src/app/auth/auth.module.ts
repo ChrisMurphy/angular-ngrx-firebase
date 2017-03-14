@@ -7,6 +7,7 @@ import { RegisterComponent } from './register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
+import { FormComponent } from './form/form.component';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { RouterModule } from '@angular/router';
   ],
   declarations: [
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    FormComponent
   ]
 })
 export class AuthModule { }

@@ -1,0 +1,6 @@
+@import '~@angular/material/core/theming/all-theme';
+@include mat-core();
+
+.error {
+	color: mat-color($mat-red, 500, 1);
+}

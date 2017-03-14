@@ -1,0 +1,18 @@
+<form novalidate [formGroup]="credentialsGroup" #form="ngForm" (ngSubmit)="submit(form.value, form.valid)" 
+  fxLayout="column" 
+  fxLayoutAlign="space-around"
+  fxLayoutGap="16px">
+  <md-input-container>
+    <input mdInput placeholder="Email" formControlName="email" autocomplete="off">
+    <md-hint class="error">
+      <span *ngIf="credentialsGroup.controls.email.hasError('required') && (credentialsGroup.controls.email.touched || submitted)">email address is required</span>
+      <span *ngIf="credentialsGroup.controls.email.hasError('simpleEmailRule') && (credentialsGroup.controls.email.touched || submitted)">email address appears incorrect</span>
+    </md-hint>
+  </md-input-container>
+  <md-input-container>
+    <input mdInput placeholder="Password" type="password" formControlName="password">
+    <md-hint class="error">
+      <span *ngIf="credentialsGroup.controls.password.hasError('required') && (credentialsGroup.controls.password.touched || submitted)">password is required</span>
+    </md-hint>
+  </md-input-container>
+</form>
