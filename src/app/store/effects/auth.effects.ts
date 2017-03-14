@@ -44,6 +44,15 @@ export class AuthEffects {
             )
         );
 
+    @Effect() register$ = this.actions$
+        .ofType(AuthActions.REGISTER)    
+        .map(toPayload)
+        .switchMap((credentials: EmailPasswordCredentials) =>
+            this.authService.register(credentials).then(
+                authInfo => this.authActions.authSuccess(authInfo),
+                error => this.authActions.authFailure(error))
+        );
+
     constructor(
         private actions$: Actions,
         private authActions: AuthActions,

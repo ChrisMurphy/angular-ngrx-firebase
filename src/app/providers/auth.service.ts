@@ -43,4 +43,12 @@ export class AuthService {
     return this.angularFire.auth.logout();
   }
 
+  /**
+   * Registers a user using Email/Password
+   * @returns {firebase.Promise<FirebaseAuthState>}
+   */
+  public register(credentials: EmailPasswordCredentials): firebase.Promise<FirebaseAuthState> {
+    return this.angularFire.auth.createUser(credentials);
+  }  
+
 }
