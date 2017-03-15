@@ -20,7 +20,7 @@
                 </button>
             </div>
             <div fxLayout="row" fxLayoutAlign="center end" class="account-text">or enter your account info</div>
-            <app-form (credentials)="login($event)"></app-form>
+            <app-form (authEvent)="login($event)"></app-form>
             <div fxLayoutAlign="center end" *ngIf="authState.error" class="error-state">
                 {{authState.error.message}}
             </div>

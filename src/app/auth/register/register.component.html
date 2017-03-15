@@ -5,7 +5,7 @@
         </md-card-header>
         <md-card-content>
             <div fxLayout="row" fxLayoutAlign="center center" class="account-text">please provide your account details</div>
-            <app-form (credentials)="register($event)"></app-form>
+            <app-form (authEvent)="register($event)"></app-form>
             <div fxLayoutAlign="center end" *ngIf="authState.error" class="error-state">
                 {{authState.error.message}}
             </div>            

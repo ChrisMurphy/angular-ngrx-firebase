@@ -12,30 +12,30 @@ import { EmailPasswordCredentials } from '../../models/email-password-credential
 })
 export class FormComponent implements OnInit {
   @ViewChild('form') form: NgForm;
-  @Output() credentials: EventEmitter<EmailPasswordCredentials>;
-  public credentialsGroup: FormGroup;
+  @Output() authEvent: EventEmitter<EmailPasswordCredentials>;
+  public credentials: FormGroup;
   public submitted: boolean;
 
   constructor(
     private formBuilder: FormBuilder
   ) {
-    this.credentials = new EventEmitter<EmailPasswordCredentials>();
+    this.authEvent = new EventEmitter<EmailPasswordCredentials>();
   }
 
   ngOnInit() {
     this.submitted = false;
 
-    this.credentialsGroup = this.formBuilder.group({
+    this.credentials = this.formBuilder.group({
       email: [null, Validators.compose([Validators.required, EmailValidators.simple])],
       password: [null, Validators.required]
     });
   }
 
-  submit(formValues: EmailPasswordCredentials, isValid: boolean) {
+  onSubmit(formValues: EmailPasswordCredentials, isValid: boolean) {
     this.submitted = true;
 
     if (isValid) {
-      this.credentials.emit(formValues);
+      this.authEvent.emit(formValues);
     }
   }
 }
