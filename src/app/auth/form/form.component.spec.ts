@@ -72,19 +72,37 @@ describe('Component: Auth Form', () => {
 
   it('should submit the form and emit credentials', () => {
     expect(component.credentials.valid).toBeFalsy();
-    component.credentials.controls['email'].setValue("test@test.com");
-    component.credentials.controls['password'].setValue("123456789");
+    component.credentials.controls['email'].setValue('test@test.com');
+    component.credentials.controls['password'].setValue('123456789');
     expect(component.credentials.valid).toBeTruthy();
 
     let eventOutput: EmailPasswordCredentials;
     // Subscribe to the Observable and store the credentials in a local variable.
-    component.authEvent.subscribe((value) => eventOutput = value);
-
+    // component.authEvent.subscribe((value) => eventOutput = value);
+    spyOn(component.authEvent, 'emit');
     // Trigger the login function, assume ngSubmit is fine (Angular)
     component.onSubmit();
 
     // Now we can check to make sure the emitted value is correct
-    expect(eventOutput.email).toBe("test@test.com");
-    expect(eventOutput.password).toBe("123456789");
+    // expect(eventOutput.email).toBe("test@test.com");
+    // expect(eventOutput.password).toBe("123456789");
+    expect(component.authEvent.emit).toHaveBeenCalledTimes(1);
+    expect(component.authEvent.emit).toHaveBeenCalledWith(
+      {email:'test@test.com', password: '123456789'}
+    );
+  });
+
+  it('should submit the form but not emit credentials if form invalid', () => {
+    // Form should be invalid
+    expect(component.credentials.valid).toBeFalsy();
+
+    // Spy on the authEvent emitter
+    spyOn(component.authEvent, 'emit');
+
+    // Trigger the login function, assume ngSubmit is fine (Angular)
+    component.onSubmit();
+
+    // authEvent shouldn't have been called
+    expect(component.authEvent.emit).toHaveBeenCalledTimes(0);
   });
 });
