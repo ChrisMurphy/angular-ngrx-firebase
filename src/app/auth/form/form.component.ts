@@ -24,18 +24,21 @@ export class FormComponent implements OnInit {
 
   ngOnInit() {
     this.submitted = false;
+    this.credentials = this.buildForm();
+  }
 
-    this.credentials = this.formBuilder.group({
+  private buildForm(): FormGroup {
+    return this.formBuilder.group({
       email: [null, Validators.compose([Validators.required, EmailValidators.simple])],
       password: [null, Validators.required]
     });
   }
 
-  onSubmit(formValues: EmailPasswordCredentials, isValid: boolean) {
+  onSubmit() {
     this.submitted = true;
 
-    if (isValid) {
-      this.authEvent.emit(formValues);
+    if (this.credentials.valid) {
+      this.authEvent.emit(this.credentials.value);
     }
   }
 }
