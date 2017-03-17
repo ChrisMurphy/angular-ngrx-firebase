@@ -3,14 +3,13 @@ import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '@angular/material';
 
 import { FormComponent } from './form.component';
-import { EmailPasswordCredentials } from '../../models/email-password-credentials';
 
 describe('Component: Auth Form', () => {
   let component: FormComponent;
   let fixture: ComponentFixture<FormComponent>;
 
   beforeEach(async(() => {
-    // refine the test module by declaring the test component
+    // Refine the test module by declaring the test component and dependencies
     TestBed.configureTestingModule({
       imports: [ReactiveFormsModule, MaterialModule],
       declarations: [FormComponent]
@@ -19,11 +18,11 @@ describe('Component: Auth Form', () => {
   }));
 
   beforeEach(() => {
-    // create component and test fixture
+    // Create component and test fixture
     fixture = TestBed.createComponent(FormComponent);
-    // get test component from the fixture
+    // Get test component from the fixture
     component = fixture.componentInstance;
-    // trigger the ngOnInit lifecycle function
+    // Trigger the ngOnInit lifecycle function
     fixture.detectChanges();
   });
 
@@ -51,6 +50,11 @@ describe('Component: Auth Form', () => {
 
     expect(email.valid).toBeFalsy();
     expect(errors['required']).toBeTruthy();
+
+    email.markAsTouched();
+    fixture.detectChanges();
+    let compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('#emailRequired').innerHTML).toBe('email address is required');
   });
 
   it('should mark email field invalid when not an email address', () => {
@@ -60,6 +64,11 @@ describe('Component: Auth Form', () => {
 
     expect(email.valid).toBeFalsy();
     expect(errors['simpleEmailRule']).toBeTruthy();
+
+    email.markAsTouched();
+    fixture.detectChanges();
+    let compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('#emailFormat').innerHTML).toBe('email address appears incorrect');    
   });
 
   it('should mark password field invalid when empty', () => {
@@ -68,24 +77,29 @@ describe('Component: Auth Form', () => {
 
     expect(email.valid).toBeFalsy();
     expect(errors['required']).toBeTruthy();
+
+    email.markAsTouched();
+    fixture.detectChanges();
+    let compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('#passwordRequired').innerHTML).toBe('password is required');    
   });
 
   it('should submit the form and emit credentials', () => {
+    // Form should be invalid
     expect(component.credentials.valid).toBeFalsy();
+    // Set valid form values
     component.credentials.controls['email'].setValue('test@test.com');
     component.credentials.controls['password'].setValue('123456789');
+    // Form should be valid
     expect(component.credentials.valid).toBeTruthy();
 
-    let eventOutput: EmailPasswordCredentials;
-    // Subscribe to the Observable and store the credentials in a local variable.
-    // component.authEvent.subscribe((value) => eventOutput = value);
+    // Spy on the authEvent emitter
     spyOn(component.authEvent, 'emit');
+
     // Trigger the login function, assume ngSubmit is fine (Angular)
     component.onSubmit();
 
-    // Now we can check to make sure the emitted value is correct
-    // expect(eventOutput.email).toBe("test@test.com");
-    // expect(eventOutput.password).toBe("123456789");
+    // Now we can check authEvent has been called with correct payload
     expect(component.authEvent.emit).toHaveBeenCalledTimes(1);
     expect(component.authEvent.emit).toHaveBeenCalledWith(
       {email:'test@test.com', password: '123456789'}
@@ -102,7 +116,7 @@ describe('Component: Auth Form', () => {
     // Trigger the login function, assume ngSubmit is fine (Angular)
     component.onSubmit();
 
-    // authEvent shouldn't have been called
+    // Now we can check authEvent hasn't been called
     expect(component.authEvent.emit).toHaveBeenCalledTimes(0);
   });
 });
