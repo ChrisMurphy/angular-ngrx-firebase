@@ -1,3 +1,7 @@
+[![Build Status](http://img.shields.io/travis/ChrisMurphy/angular-ngrx-firebase/master.svg)](https://travis-ci.org/ChrisMurphy/angular-ngrx-firebase)
+
+[![Code Coverage](https://img.shields.io/codecov/c/github/ChrisMurphy/angular-ngrx-firebase/master.svg)](https://travis-ci.org/ChrisMurphy/angular-ngrx-firebase)
+
 # AngularNgrxFirebase
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0-beta.32.3.

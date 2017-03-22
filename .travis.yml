@@ -24,6 +24,9 @@ apt:
   - google-chrome-stable
   - google-chrome-beta
 
+before_install:
+  - pip install --user codecov
+
 before_script:
   - npm install -g firebase-tools
   - npm install -g @angular/cli
@@ -32,10 +35,11 @@ before_script:
   - sh -e /etc/init.d/xvfb start  
 
 script:
-  - ng test --watch false
+  - ng test --cc --watch false
   - ng build --prod
 
 after_success:
+  - codecov --file coverage/lcov.info --disable search
   - firebase deploy --token $FIREBASE_TOKEN
 
 notifications:
