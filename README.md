@@ -1,6 +1,6 @@
 [![Build Status](http://img.shields.io/travis/ChrisMurphy/angular-ngrx-firebase/master.svg)](https://travis-ci.org/ChrisMurphy/angular-ngrx-firebase)
 
-[![Code Coverage](https://img.shields.io/codecov/c/github/ChrisMurphy/angular-ngrx-firebase/master.svg)](https://travis-ci.org/ChrisMurphy/angular-ngrx-firebase)
+[![Code Coverage](https://img.shields.io/codecov/c/github/ChrisMurphy/angular-ngrx-firebase/master.svg)](https://codecov.io/gh/ChrisMurphy/angular-ngrx-firebase)
 
 # AngularNgrxFirebase
 
