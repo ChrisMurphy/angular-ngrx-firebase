@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 
 import 'hammerjs';
 import { MaterialModule , MdIconRegistry } from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -45,6 +46,7 @@ export const firebaseAuthConfig = {
     ReactiveFormsModule,
     HttpModule,
     MaterialModule,
+    BrowserAnimationsModule,
     AngularFireModule.initializeApp(firebaseConfig, firebaseAuthConfig),
     AppRoutingModule,
     AppStoreModule,
