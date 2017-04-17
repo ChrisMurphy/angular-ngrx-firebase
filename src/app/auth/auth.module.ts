@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
 import { FormComponent } from './form/form.component';
+import { SocialComponent } from './social/social.component';
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ import { FormComponent } from './form/form.component';
   declarations: [
     LoginComponent,
     RegisterComponent,
-    FormComponent
+    FormComponent,
+    SocialComponent
   ]
 })
 export class AuthModule { }

@@ -49,20 +49,8 @@ export class LoginComponent implements OnInit {
     this.store.dispatch(this.authActions.login(credentials));
   }
 
-  loginGoogle() {
-    this.store.dispatch(this.authActions.loginSocial(AuthProviders.Google));
-  }
-
-  loginFacebook() {
-    this.store.dispatch(this.authActions.loginSocial(AuthProviders.Facebook));
-  }
-
-  loginTwitter() {
-    this.store.dispatch(this.authActions.loginSocial(AuthProviders.Twitter));
-  }
-
-  loginGithub() {
-    this.store.dispatch(this.authActions.loginSocial(AuthProviders.Github));
+  loginSocial(provider: AuthProviders) {
+    this.store.dispatch(this.authActions.loginSocial(provider));
   }
 
   reset() {

@@ -6,18 +6,7 @@
         <md-card-content>
             <div fxLayout="row" fxLayoutAlign="center center" class="social-text">connect via one of these providers</div>
             <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="0.5em">
-                <button md-fab (click)="loginGoogle()" [disabled]="authState.authenticating">
-                    <md-icon class="mdi-24px" fontSet="mdi" fontIcon="mdi-google"></md-icon>
-                </button>
-                <button md-fab (click)="loginFacebook()" [disabled]="authState.authenticating">
-                    <md-icon class="mdi-24px" fontSet="mdi" fontIcon="mdi-facebook"></md-icon>
-                </button>
-                <button md-fab (click)="loginTwitter()" [disabled]="authState.authenticating">
-                    <md-icon class="mdi-24px" fontSet="mdi" fontIcon="mdi-twitter"></md-icon>
-                </button>
-                <button md-fab (click)="loginGithub()" [disabled]="authState.authenticating">
-                    <md-icon class="mdi-24px" fontSet="mdi" fontIcon="mdi-github-circle"></md-icon>
-                </button>
+                <app-social [authenticating]="authState.authenticating" (authEvent)="loginSocial($event)"></app-social>
             </div>
             <div fxLayout="row" fxLayoutAlign="center end" class="account-text">or enter your account info</div>
             <app-form (authEvent)="login($event)"></app-form>
