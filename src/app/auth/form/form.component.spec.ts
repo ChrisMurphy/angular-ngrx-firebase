@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { FormComponent } from './form.component';
 
@@ -11,7 +12,7 @@ describe('Component: Auth Form', () => {
   beforeEach(async(() => {
     // Refine the test module by declaring the test component and dependencies
     TestBed.configureTestingModule({
-      imports: [ReactiveFormsModule, MaterialModule],
+      imports: [ReactiveFormsModule, MaterialModule, BrowserAnimationsModule],
       declarations: [FormComponent]
     })
       .compileComponents();
